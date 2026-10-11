@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="vi" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arena of Valor Hotfix Analysis - tien0246</title>
-    <meta name="description" content="Reverse engineering the iFix hotfix system in Arena of Valor." />
+    <title>Phân tích Hotfix Arena of Valor - tien0246</title>
+    <meta name="description" content="Dịch ngược hệ thống hotfix iFix trong Liên Quân Mobile." />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -132,11 +132,10 @@
           <a href="#" class="hover:opacity-80 transition-opacity">tien0246</a>
         </div>
         <nav class="flex items-center gap-6 text-sm font-medium text-muted-foreground">
-          <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">Posts</a>
-          <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">About</a>
+          <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">Bài viết</a>
+          <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">Giới thiệu</a>
           <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">Tags</a>
           
-          <!-- Theme Toggle Mock -->
           <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors ml-2">
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-foreground">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -155,10 +154,10 @@
           <!-- Hero Header -->
           <div class="mb-12">
             <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 text-foreground leading-tight">
-              Arena of Valor Hotfix Analysis
+              Phân tích Hotfix của Liên Quân Mobile (Arena of Valor)
             </h1>
             <p class="text-xl text-muted-foreground mb-6">
-              Reverse engineering the iFix hotfix system in Arena of Valor.
+              Dịch ngược hệ thống hotfix iFix trong Liên Quân Mobile[cite: 1].
             </p>
             
             <div class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
@@ -170,7 +169,7 @@
               </div>
               <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                <time>Dec 16, 2025</time>
+                <time>16 Tháng 12, 2025</time>
               </div>
               <div class="flex gap-2">
                 <span class="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-semibold hover:bg-muted transition-colors cursor-pointer">#Reverse Engineering</span>
@@ -180,42 +179,42 @@
           </div>
 
           <p class="prose-p">
-            This document provides a comprehensive reverse-engineering analysis of the Tencent's InjectFix as implemented in Arena of Valor version 1.60.1.9.
+            Tài liệu này cung cấp một phân tích dịch ngược toàn diện về InjectFix của Tencent được triển khai trong Arena of Valor phiên bản 1.60.1.9[cite: 1].
           </p>
 
           <!-- Disclaimer Alert -->
-          <div class="rounded-lg border border-[hsl(0_62.8%_30.6%/0.5)] bg-[hsl(0_62.8%_30.6%/0.15)] p-4 my-8 relative">
+          <div class="rounded-lg border border-[hsl(0_62.8%_30.6%/0.5)] bg-[hsl(0_62.8%_30.6%/0.15)] p-4 my-8 relative" id="disclaimer">
             <div class="flex items-start gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500 mt-1 shrink-0"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
               <div>
-                <h5 class="mb-2 font-semibold leading-none tracking-tight text-foreground" id="disclaimer">Disclaimer & Ethical Statement</h5>
+                <h5 class="mb-2 font-semibold leading-none tracking-tight text-foreground">Tuyên bố từ chối trách nhiệm & Đạo đức</h5>
                 <div class="text-sm text-foreground/90 leading-relaxed space-y-2">
-                  <p>This research is conducted and documented solely for <strong>educational and security research purposes</strong>.</p>
-                  <p>The author <strong>does not</strong> encourage, support, or condone the use of this information for:</p>
+                  <p>Nghiên cứu này được thực hiện và tài liệu hóa hoàn toàn vì mục đích <strong>giáo dục và nghiên cứu bảo mật</strong>[cite: 1].</p>
+                  <p>Tác giả <strong>không</strong> khuyến khích, hỗ trợ, hoặc dung túng việc sử dụng thông tin này cho[cite: 1]:</p>
                   <ul class="list-disc pl-5 mt-2 space-y-1">
-                    <li>Creating malicious cheats or hacks.</li>
-                    <li>Disrupting game services or violating the Terms of Service of Arena of Valor.</li>
-                    <li>Infringing upon the intellectual property rights of Tencent, Garena, or any associated parties.</li>
+                    <li>Việc tạo ra các bản hack hoặc cheat độc hại[cite: 1].</li>
+                    <li>Làm gián đoạn dịch vụ trò chơi hoặc vi phạm Điều khoản Dịch vụ của Arena of Valor[cite: 1].</li>
+                    <li>Vi phạm quyền sở hữu trí tuệ của Tencent, Garena, hoặc bất kỳ bên liên quan nào[cite: 1].</li>
                   </ul>
-                  <p class="mt-3 text-xs opacity-80"><strong>Notice:</strong> If you are an authorized representative of the relevant parties and wish for this content to be removed or redacted, please contact the author immediately.</p>
+                  <p class="mt-3 text-xs opacity-80"><strong>Lưu ý:</strong> Nếu bạn là đại diện được ủy quyền của các bên liên quan và muốn nội dung này bị gỡ bỏ hoặc chỉnh sửa, vui lòng liên hệ ngay với tác giả. Nội dung này sẽ được gỡ bỏ khi có yêu cầu hợp lệ[cite: 1].</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <h2 class="prose-h2" id="part1">Part 1: Decryption of Hotfix Files</h2>
-          <p class="prose-p">The first step in the iFix pipeline is decrypting the <code class="prose-inline-code">.bytes</code> hotfix files.</p>
+          <h2 class="prose-h2" id="part1">Phần 1: Giải mã các tệp Hotfix</h2>
+          <p class="prose-p">Bước đầu tiên trong quy trình iFix là giải mã các tệp hotfix <code class="prose-inline-code">.bytes</code>[cite: 1].</p>
 
-          <h3 class="prose-h3" id="part1-1">1.1. Decryption Algorithm</h3>
+          <h3 class="prose-h3" id="part1-1">1.1. Thuật toán giải mã</h3>
           <p class="prose-p">
-            The system uses the <strong>AES algorithm</strong> in <strong>CBC Mode</strong>. The decryption is handled by the <code class="prose-inline-code">.NET</code> framework’s <code class="prose-inline-code">System.Security.Cryptography.CryptoStream</code> class, which provides a stream-based interface for cryptographic transformations.
+            Hệ thống sử dụng <strong>thuật toán AES</strong> ở <strong>chế độ CBC</strong>[cite: 1]. Việc giải mã được xử lý bởi lớp <code class="prose-inline-code">System.Security.Cryptography.CryptoStream</code> của framework <code class="prose-inline-code">.NET</code>, cung cấp giao diện dựa trên luồng cho các biến đổi mật mã[cite: 1].
+            Việc thiết lập và khởi tạo luồng giải mã này xảy ra trong hàm tạo của lớp <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream</code>[cite: 1].
           </p>
           <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream..ctor</code></li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF8D24</code></li>
+            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream..ctor</code>[cite: 1]</li>
+            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF8D24</code>[cite: 1]</li>
           </ul>
 
-          <!-- Code Block (C#) -->
           <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
             <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
               <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (IDA Pseudo-code)</span>
@@ -244,198 +243,12 @@
         ICryptoTransform decryptor = m_aesProvider.CreateDecryptor();
 
         <span class="text-zinc-500">// 5. Wrap the original (encrypted) stream with a CryptoStream.</span>
+        <span class="text-zinc-500">//    Data read from this stream will be decrypted on the fly.</span>
         <span class="text-blue-400">this</span>.m_cryptoStream = <span class="text-pink-400">new</span> CryptoStream(inStream, decryptor, CryptoStreamMode.Read);
     }
+    <span class="text-zinc-500">// ...</span>
 }</code></pre>
             </div>
           </div>
 
-          <h3 class="prose-h3" id="part1-2">1.2. Key and IV Derivation</h3>
-          <h4 class="prose-h4">The Key (16-bytes)</h4>
-          <p class="prose-p">
-            The key is <strong>dynamically calculated based on the filename</strong>. This process involves hashing the filename (<code class="prose-inline-code">GetStrUpperHash</code>) and mixing it with a base key (<code class="prose-inline-code">GetMixedKey</code>).
-          </p>
-
-          <h4 class="prose-h4">The IV (16-bytes)</h4>
-          <p class="prose-p">
-            The IV is a <strong>static</strong> value. After using a debugger, it was confirmed that the IV is <strong>16 bytes of zero</strong>.
-          </p>
-
-          <h3 class="prose-h3" id="part1-3">1.3. Script Python</h3>
-          <p class="prose-p">
-            This script implements the decryption logic. Some files have a 3-byte magic header <code class="prose-inline-code">22 4A 67</code> before the encrypted data.
-          </p>
-          
-          <!-- Code Block (Python) -->
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Python</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto max-h-[400px]">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-pink-400">from</span> Crypto.Cipher <span class="text-pink-400">import</span> AES
-<span class="text-pink-400">from</span> Crypto.Util.Padding <span class="text-pink-400">import</span> pad, unpad
-<span class="text-pink-400">import</span> os
-
-MAGIC = <span class="text-blue-400">bytes</span>.fromhex(<span class="text-green-300">"22 4A 67"</span>)
-
-<span class="text-pink-400">def</span> <span class="text-yellow-200">_key</span>(name: <span class="text-blue-400">str</span>) -> <span class="text-blue-400">bytes</span>:
-    h = <span class="text-orange-300">0</span>
-    <span class="text-pink-400">for</span> ch <span class="text-pink-400">in</span> name:
-        c = <span class="text-blue-400">ord</span>(ch)
-        <span class="text-pink-400">if</span> <span class="text-orange-300">97</span> <= c <= <span class="text-orange-300">122</span>:
-            c -= <span class="text-orange-300">32</span>
-        h = ((h * <span class="text-orange-300">31</span>) + c) & <span class="text-orange-300">0xFFFFFFFF</span>
-    
-    k = <span class="text-blue-400">bytearray</span>(<span class="text-blue-400">bytes</span>.fromhex(<span class="text-green-300">"99 64 b1 b0 6b 03 8d 7f b7 7d b6 a7 54 90 8b 73"</span>))
-    k0, k1, k2, k3 = (h & <span class="text-orange-300">0xFF</span>, (h >> <span class="text-orange-300">8</span>) & <span class="text-orange-300">0xFF</span>, (h >> <span class="text-orange-300">16</span>) & <span class="text-orange-300">0xFF</span>, (h >> <span class="text-orange-300">24</span>) & <span class="text-orange-300">0xFF</span>)
-    
-    <span class="text-pink-400">for</span> i <span class="text-pink-400">in</span> <span class="text-blue-400">range</span>(<span class="text-blue-400">len</span>(k)):
-        k[i] ^= (k0, k1, k2, k3)[i & <span class="text-orange-300">3</span>]
-    
-    <span class="text-pink-400">return</span> <span class="text-blue-400">bytes</span>(k)
-
-<span class="text-pink-400">def</span> <span class="text-yellow-200">decrypt</span>(name: <span class="text-blue-400">str</span>) -> <span class="text-blue-400">bytes</span>:
-    key = _key(name)
-    <span class="text-zinc-500"># ... implementation details for decrypting the file with padding and CBC</span>
-</code></pre>
-            </div>
-          </div>
-
-          <h2 class="prose-h2" id="part2">Part 2: Decrypted File Format</h2>
-          <p class="prose-p">
-            After decryption, the resulting <code class="prose-inline-code">.dec</code> file is parsed by the <code class="prose-inline-code">IFix.Core.PatchManager$$Load</code> function.
-          </p>
-
-          <h3 class="prose-h3">2.2. File Header & Magic Number</h3>
-          <p class="prose-p">The file begins with an 8-byte magic number that identifies it as a valid iFix patch: <code class="prose-inline-code">0x1FD45F460E2CDBD0</code></p>
-
-          <h3 class="prose-h3">2.4. Key Data Structures</h3>
-          <p class="prose-p">The <code class="prose-inline-code">Instruction</code> Struct is an 8-byte struct that represents a single operation in the iFix bytecode.</p>
-
-          <h2 class="prose-h2" id="part3">Part 3: Virtual Machine Internals</h2>
-          <p class="prose-p">
-            The iFix bytecode is interpreted by a custom Virtual Machine derived from <a href="https://github.com/Tencent/InjectFix" class="prose-a">Tencent’s InjectFix</a>. The execution engine dynamically parses and runs IL instructions at runtime.
-          </p>
-
-          <h2 class="prose-h2" id="part4">Part 4: Creating the Hotfix Bytecode</h2>
-          <p class="prose-p">
-            With the file format and VM logic understood, I could now construct a custom hotfix to modify <code class="prose-inline-code">CameraSystem.GetZoomRate</code> to return <strong>3x</strong> the original value.
-          </p>
-
-          <h3 class="prose-h3">4.2. Opcode Logic</h3>
-          <ul class="prose-ul">
-            <li><code class="prose-inline-code">StackSpace (146, 2)</code>: Init stack size of 2.</li>
-            <li><code class="prose-inline-code">Ldarg.0 (164, 0)</code>: Load <code class="prose-inline-code">this</code>.</li>
-            <li><code class="prose-inline-code">CallVirt (122, token)</code>: Call <code class="prose-inline-code">get_ZoomRateFromAge</code>.</li>
-            <li><code class="prose-inline-code">Ldc_I4 (143, 3)</code>: Push integer <code class="prose-inline-code">3</code>.</li>
-            <li><code class="prose-inline-code">Conv.R4 (58, 0)</code>: Convert <code class="prose-inline-code">3</code> to float.</li>
-            <li><code class="prose-inline-code">Mul (3, 0)</code>: Multiply the result.</li>
-            <li><code class="prose-inline-code">Ret (173, 1)</code>: Return.</li>
-          </ul>
-
-          <h3 class="prose-h3">4.3. Script Python (Generator)</h3>
-          <p class="prose-p">
-            This Python script generates the unencrypted binary file (<code class="prose-inline-code">HeroSkin_1.dec</code>) directly, bypassing the need for the official compiler.
-          </p>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Python</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto max-h-[400px]">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-pink-400">import</span> struct
-
-<span class="text-pink-400">def</span> <span class="text-yellow-200">w_str</span>(f, s):
-    data = s.encode(<span class="text-green-300">'utf-8'</span>)
-    l = <span class="text-blue-400">len</span>(data)
-    <span class="text-pink-400">while</span> l >= <span class="text-orange-300">0x80</span>:
-        f.write(struct.pack(<span class="text-green-300">'B'</span>, (l & <span class="text-orange-300">0x7F</span>) | <span class="text-orange-300">0x80</span>))
-        l >>= <span class="text-orange-300">7</span>
-    f.write(struct.pack(<span class="text-green-300">'B'</span>, l))
-    f.write(data)
-
-<span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">"HeroSkin_1.dec"</span>, <span class="text-green-300">'wb'</span>) <span class="text-pink-400">as</span> f:
-    <span class="text-zinc-500"># 1. Header Magic</span>
-    f.write(struct.pack(<span class="text-green-300">'<Q'</span>, <span class="text-orange-300">0x1FD45F460E2CDBD0</span>))
-
-    <span class="text-zinc-500"># 2. Bridge Name</span>
-    w_str(f, <span class="text-green-300">"IFix.ILFixInterfaceBridge, Project_d, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span>)
-    
-    <span class="text-zinc-500"># ... additional logic for parsing ops to struct</span>
-    
-    <span class="text-blue-400">print</span>(<span class="text-green-300">"Done"</span>)</code></pre>
-            </div>
-          </div>
-          
-        </article>
-
-        <!-- Sidebar TOC -->
-        <aside class="hidden lg:block lg:col-span-1">
-          <div class="sticky top-24 rounded-xl border border-border bg-card p-6 shadow-sm">
-            <h4 class="mb-4 font-semibold text-foreground">Table of Contents</h4>
-            <nav class="space-y-2.5 text-sm text-muted-foreground">
-              <a href="#disclaimer" class="block hover:text-foreground transition-colors">Disclaimer & Ethical Statement</a>
-              
-              <a href="#part1" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Part 1: Decryption</a>
-              <div class="pl-4 border-l border-border space-y-2 mt-1">
-                <a href="#part1-1" class="block hover:text-foreground transition-colors">1.1. Decryption Algorithm</a>
-                <a href="#part1-2" class="block hover:text-foreground transition-colors">1.2. Key and IV Derivation</a>
-                <a href="#part1-3" class="block hover:text-foreground transition-colors">1.3. Script Python</a>
-              </div>
-
-              <a href="#part2" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Part 2: Decrypted File Format</a>
-              
-              <a href="#part3" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Part 3: Virtual Machine Internals</a>
-
-              <a href="#part4" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Part 4: Creating the Hotfix Bytecode</a>
-            </nav>
-          </div>
-        </aside>
-
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-border/40 py-8 bg-muted/20">
-      <div class="container mx-auto px-4 sm:px-8 max-w-7xl flex items-center justify-between">
-        <p class="text-sm text-muted-foreground">
-          © 2025 tien0246. Built with Shadcn UI aesthetics.
-        </p>
-      </div>
-    </footer>
-
-    <!-- Script for copy code blocks -->
-    <script>
-      function copyCode(button) {
-        const wrapper = button.closest('.rounded-md.border');
-        const code = wrapper.querySelector('code');
-        if (!code) return;
-        
-        const text = code.textContent;
-
-        navigator.clipboard.writeText(text).then(() => {
-          const iconCopy = button.querySelector('.icon-copy');
-          const iconCheck = button.querySelector('.icon-check');
-
-          if(iconCopy) iconCopy.classList.add('hidden');
-          if(iconCheck) iconCheck.classList.remove('hidden');
-
-          setTimeout(() => {
-            if(iconCopy) iconCopy.classList.remove('hidden');
-            if(iconCheck) iconCheck.classList.add('hidden');
-          }, 2000);
-        }).catch(err => {
-          console.error("Failed to copy", err);
-        });
-      }
-    </script>
-  </body>
-</html>
+          <h
