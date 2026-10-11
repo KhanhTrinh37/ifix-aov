@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phân tích Hotfix Arena of Valor & Tencent InjectFix - Trịnh Minh Khanh</title>
+    <title>Phân tích Hotfix Arena of Valor & Tencent InjectFix - KhanhTrinh37</title>
     <meta name="description" content="Dịch ngược hệ thống hotfix iFix trong Liên Quân Mobile và cách ứng dụng Tencent InjectFix." />
     
     <!-- Fonts -->
@@ -69,6 +69,26 @@
     <style type="text/tailwindcss">
       @layer base {
         :root {
+          --background: 0 0% 100%;
+          --foreground: 240 10% 3.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 240 10% 3.9%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 240 10% 3.9%;
+          --primary: 240 5.9% 10%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 240 4.8% 95.9%;
+          --secondary-foreground: 240 5.9% 10%;
+          --muted: 240 4.8% 95.9%;
+          --muted-foreground: 240 3.8% 46.1%;
+          --accent: 240 4.8% 95.9%;
+          --accent-foreground: 240 5.9% 10%;
+          --border: 240 5.9% 90%;
+          --input: 240 5.9% 90%;
+          --ring: 240 10% 3.9%;
+          --radius: 0.5rem;
+        }
+        .dark {
           --background: 240 10% 3.9%;
           --foreground: 0 0% 98%;
           --card: 240 10% 3.9%;
@@ -86,10 +106,9 @@
           --border: 240 3.7% 15.9%;
           --input: 240 3.7% 15.9%;
           --ring: 240 4.9% 83.9%;
-          --radius: 0.5rem;
         }
         body {
-          @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+          @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-300;
         }
       }
 
@@ -116,28 +135,46 @@
         @apply font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors;
       }
 
-      /* Custom scrollbar for pre blocks */
+      /* Custom scrollbar */
       pre::-webkit-scrollbar { height: 6px; width: 6px; }
       pre::-webkit-scrollbar-track { background: transparent; }
       pre::-webkit-scrollbar-thumb { @apply bg-muted-foreground/30 rounded-full; }
       pre::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/50; }
+
+      /* Theme toggle icons */
+      .dark .icon-sun { display: none; }
+      .dark .icon-moon { display: block; }
+      html:not(.dark) .icon-sun { display: block; }
+      html:not(.dark) .icon-moon { display: none; }
     </style>
   </head>
   <body class="min-h-screen flex flex-col">
     
     <!-- Navbar Component -->
-    <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
       <div class="container mx-auto px-4 sm:px-8 max-w-7xl h-14 flex items-center justify-between">
         <div class="flex items-center gap-2 font-bold tracking-tight text-lg">
-          <a href="#" class="hover:opacity-80 transition-opacity">Trịnh Minh Khanh</a>
+          <a href="#" class="hover:opacity-80 transition-opacity">KhanhTrinh37</a>
         </div>
         <nav class="flex items-center gap-6 text-sm font-medium text-muted-foreground">
           <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">Bài viết</a>
           <a href="#" class="transition-colors hover:text-foreground hidden sm:inline-block">Giới thiệu</a>
-          <a href="https://github.com/Tencent/InjectFix" target="_blank" class="transition-colors hover:text-foreground hidden sm:inline-block">InjectFix GitHub</a>
+          <a href="https://github.com/KhanhTrinh37" target="_blank" class="transition-colors hover:text-foreground hidden sm:inline-block">GitHub</a>
           
-          <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors ml-2">
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-foreground">
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors ml-2" aria-label="Toggle theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </button>
@@ -162,14 +199,14 @@
             
             <div class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
               <div class="flex items-center gap-2">
-                <div class="h-8 w-8 rounded-full bg-muted overflow-hidden flex items-center justify-center border border-border">
-                  <span class="font-bold text-foreground">K</span>
+                <div class="h-8 w-8 rounded-full bg-primary text-primary-foreground overflow-hidden flex items-center justify-center border border-border shadow-sm">
+                  <span class="font-bold">K</span>
                 </div>
-                <span class="font-medium text-foreground">Trịnh Minh Khanh</span>
+                <span class="font-medium text-foreground">KhanhTrinh37</span>
               </div>
               <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                <time>11 Tháng 10, 2026</time>
+                <time>Cập nhật: Tháng 10, 2026</time>
               </div>
               <div class="flex gap-2">
                 <span class="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-semibold hover:bg-muted transition-colors cursor-pointer">#Reverse Engineering</span>
@@ -178,12 +215,25 @@
             </div>
           </div>
 
-          <!-- Credit Block -->
-          <div class="rounded-lg border border-border bg-accent/30 p-4 my-8 flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mt-0.5 shrink-0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-            <div>
-              <h5 class="font-semibold text-foreground text-sm">Ghi công (Credits)</h5>
-              <p class="text-sm text-muted-foreground mt-1">Phần 1 đến Phần 4 của bài viết này được tổng hợp và sử dụng các tài liệu phân tích dịch ngược từ bài viết gốc "Arena of Valor Hotfix Analysis" của tác giả <strong>tien0246</strong>. Xin gửi lời cảm ơn đặc biệt đến tác giả vì những nghiên cứu xuất sắc này.</p>
+          <!-- Prominent Credit Block -->
+          <div class="rounded-xl border border-primary/30 bg-primary/5 p-6 my-8 shadow-sm relative overflow-hidden">
+            <div class="absolute right-0 top-0 opacity-10 pointer-events-none">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 22h20L12 2zm0 3.8L18.2 19H5.8L12 5.8z"/></svg>
+            </div>
+            <div class="flex items-start gap-4 relative z-10">
+              <div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-foreground mb-1">Ghi công (Credits) - tien0246</h3>
+                <p class="text-sm text-foreground/80 leading-relaxed">
+                  Toàn bộ tài liệu phân tích dịch ngược sâu, thuật toán giải mã, và kiến trúc VM của iFix (Từ Phần 1 đến Phần 4) được nghiên cứu và viết bởi tác giả <strong>tien0246</strong>. Cảm ơn sự đóng góp to lớn của tác giả gốc cho cộng đồng Reverse Engineering!
+                </p>
+                <a href="https://tien0246.github.io/post/aov/" target="_blank" class="inline-flex items-center gap-1 text-sm text-primary font-medium mt-2 hover:underline">
+                  Xem bài viết gốc của tien0246
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -194,34 +244,28 @@
               <div>
                 <h5 class="mb-2 font-semibold leading-none tracking-tight text-foreground">Tuyên bố từ chối trách nhiệm & Đạo đức</h5>
                 <div class="text-sm text-foreground/90 leading-relaxed space-y-2">
-                  <p>Nghiên cứu này được thực hiện và tài liệu hóa hoàn toàn vì mục đích <strong>giáo dục và nghiên cứu bảo mật</strong>[cite: 1].</p>
-                  <p>Tác giả <strong>không</strong> khuyến khích, hỗ trợ, hoặc dung túng việc sử dụng thông tin này cho[cite: 1]:</p>
-                  <ul class="list-disc pl-5 mt-2 space-y-1">
-                    <li>Việc tạo ra các bản hack hoặc cheat độc hại[cite: 1].</li>
-                    <li>Làm gián đoạn dịch vụ trò chơi hoặc vi phạm Điều khoản Dịch vụ của Arena of Valor[cite: 1].</li>
-                    <li>Vi phạm quyền sở hữu trí tuệ của Tencent, Garena, hoặc bất kỳ bên liên quan nào[cite: 1].</li>
-                  </ul>
-                  <p class="mt-3 text-xs opacity-80"><strong>Lưu ý:</strong> Nếu bạn là đại diện được ủy quyền của các bên liên quan và muốn nội dung này bị gỡ bỏ hoặc chỉnh sửa, vui lòng liên hệ ngay. Nội dung này sẽ được gỡ bỏ khi có yêu cầu hợp lệ[cite: 1].</p>
+                  <p>Nghiên cứu này được thực hiện và tài liệu hóa hoàn toàn vì mục đích <strong>giáo dục và nghiên cứu bảo mật</strong>.</p>
+                  <p>Tác giả <strong>không</strong> khuyến khích, hỗ trợ, hoặc dung túng việc sử dụng thông tin này để tạo ra các phần mềm gian lận (cheat), phá hoại môi trường trò chơi trực tuyến, hoặc vi phạm bản quyền và chính sách của nhà phát hành.</p>
                 </div>
               </div>
             </div>
           </div>
 
           <p class="prose-p">
-            Tài liệu này cung cấp một phân tích dịch ngược toàn diện về InjectFix của Tencent được triển khai trong Arena of Valor phiên bản 1.60.1.9[cite: 1]. Sau đó, chúng ta sẽ đi sâu vào cách ứng dụng thực tế thư viện nguồn mở này cho các dự án Unity cá nhân.
+            Tài liệu này cung cấp một phân tích dịch ngược toàn diện về InjectFix của Tencent được triển khai trong Arena of Valor phiên bản 1.60.1.9. Sau đó, chúng ta sẽ đi sâu vào cách ứng dụng thực tế thư viện nguồn mở này cho các dự án Unity cá nhân.
           </p>
 
           <h2 class="prose-h2" id="part1">Phần 1: Giải mã các tệp Hotfix</h2>
-          <p class="prose-p">Bước đầu tiên trong quy trình iFix là giải mã các tệp hotfix <code class="prose-inline-code">.bytes</code>[cite: 1].</p>
+          <p class="prose-p">Bước đầu tiên trong quy trình iFix là giải mã các tệp hotfix <code class="prose-inline-code">.bytes</code>.</p>
 
           <h3 class="prose-h3" id="part1-1">1.1. Thuật toán giải mã</h3>
           <p class="prose-p">
-            Hệ thống sử dụng <strong>thuật toán AES</strong> ở <strong>chế độ CBC</strong>[cite: 1]. Việc giải mã được xử lý bởi lớp <code class="prose-inline-code">System.Security.Cryptography.CryptoStream</code> của framework <code class="prose-inline-code">.NET</code>, cung cấp giao diện dựa trên luồng cho các biến đổi mật mã[cite: 1].
-            Việc thiết lập và khởi tạo luồng giải mã này xảy ra trong hàm tạo của lớp <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream</code>[cite: 1].
+            Hệ thống sử dụng <strong>thuật toán AES</strong> ở <strong>chế độ CBC</strong>. Việc giải mã được xử lý bởi lớp <code class="prose-inline-code">System.Security.Cryptography.CryptoStream</code> của framework <code class="prose-inline-code">.NET</code>, cung cấp giao diện dựa trên luồng cho các biến đổi mật mã.
+            Việc thiết lập và khởi tạo luồng giải mã này xảy ra trong hàm tạo của lớp <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream</code>.
           </p>
           <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream..ctor</code>[cite: 1]</li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF8D24</code>[cite: 1]</li>
+            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.KnowLengthBytesStream..ctor</code></li>
+            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF8D24</code></li>
           </ul>
 
           <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
@@ -252,10 +296,8 @@
         ICryptoTransform decryptor = m_aesProvider.CreateDecryptor();
 
         <span class="text-zinc-500">// 5. Wrap the original (encrypted) stream with a CryptoStream.</span>
-        <span class="text-zinc-500">//    Data read from this stream will be decrypted on the fly.</span>
         <span class="text-blue-400">this</span>.m_cryptoStream = <span class="text-pink-400">new</span> CryptoStream(inStream, decryptor, CryptoStreamMode.Read);
     }
-    <span class="text-zinc-500">// ...</span>
 }</code></pre>
             </div>
           </div>
@@ -263,103 +305,15 @@
           <h3 class="prose-h3" id="part1-2">1.2. Trích xuất Key và IV</h3>
           <h4 class="prose-h4">Khóa (16-bytes)</h4>
           <p class="prose-p">
-            Khóa được <strong>tính toán động dựa trên tên tệp</strong>[cite: 1]. Quá trình này bao gồm hai hàm chính[cite: 1]:
+            Khóa được <strong>tính toán động dựa trên tên tệp</strong>. Băm tên tệp bằng <code class="prose-inline-code">GetStrUpperHash</code> và trộn với Khóa Cơ sở (Base Key) bằng <code class="prose-inline-code">GetMixedKey</code>.
           </p>
-          <p class="prose-p font-semibold">Bước 1: Băm tên tệp</p>
-          <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.GetStrUpperHash</code>[cite: 1]</li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF7F68</code>[cite: 1]</li>
-            <li><strong>Logic</strong>: Băm tên tài nguyên viết hoa bằng công thức: <code class="prose-inline-code">hash = (hash * 31) + character</code>[cite: 1].</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (IDA Pseudo-code)</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">public static uint</span> <span class="text-yellow-200">GetStrUpperHash</span>(<span class="text-blue-400">string</span> inAssetName)
-{
-    <span class="text-blue-400">uint</span> hash = <span class="text-orange-300">0</span>;
-    <span class="text-pink-400">foreach</span> (<span class="text-blue-400">char</span> c <span class="text-pink-400">in</span> inAssetName.ToUpper())
-    {
-        hash = (hash * <span class="text-orange-300">31</span>) + c;
-    }
-    <span class="text-pink-400">return</span> hash;
-}</code></pre>
-            </div>
-          </div>
-
-          <p class="prose-p font-semibold">Bước 2: Trộn với Khóa Cơ sở (Base Key)</p>
-          <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.GetMixedKey</code>[cite: 1]</li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF805C</code>[cite: 1]</li>
-            <li><strong>Logic</strong>: Lấy mã băm từ bước trước và thực hiện XOR từng byte với một <strong>Khóa Cơ sở</strong> cố định: <code class="prose-inline-code">99 64 b1 b0 6b 03 8d 7f b7 7d b6 a7 54 90 8b 73</code>[cite: 1].</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (IDA Pseudo-code)</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">public static byte</span>[] <span class="text-yellow-200">GetMixedKey</span>(<span class="text-blue-400">string</span> resName)
-{
-    <span class="text-blue-400">uint</span> hash = GetStrUpperHash(resName);
-    <span class="text-blue-400">byte</span>[] keyBytes = (<span class="text-blue-400">byte</span>[])mRawKeys.Clone(); <span class="text-zinc-500">// mRawKeys holds the base key</span>
-
-    <span class="text-pink-400">for</span> (<span class="text-blue-400">int</span> i = <span class="text-orange-300">0</span>; i &lt; keyBytes.Length; i++)
-    {
-        <span class="text-zinc-500">// XOR each byte of the key with a byte from the hash</span>
-        keyBytes[i] ^= (<span class="text-blue-400">byte</span>)(hash &gt;&gt; ((i &amp; <span class="text-orange-300">3</span>) * <span class="text-orange-300">8</span>));
-    }
-    <span class="text-pink-400">return</span> keyBytes;
-}</code></pre>
-            </div>
-          </div>
-
-          <h4 class="prose-h4">IV (16-bytes)</h4>
-          <p class="prose-p">
-            IV là một giá trị <strong>tĩnh</strong>[cite: 1]. Sau khi sử dụng trình gỡ lỗi (debugger), đã xác nhận rằng IV là <strong>16 byte 0</strong>[cite: 1].
-          </p>
-          <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">CommonLibs.FileModule.ResDReader.get_m_aesProvider</code>[cite: 1]</li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x5BF82D4</code>[cite: 1]</li>
-            <li><strong>Logic</strong>: Hàm này tạo phiên bản <code class="prose-inline-code">AesCryptoServiceProvider</code> nếu nó chưa tồn tại và thiết lập thuộc tính <code class="prose-inline-code">IV</code> của nó[cite: 1].</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (IDA Pseudo-code)</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">private static</span> AesCryptoServiceProvider <span class="text-yellow-200">get_m_aesProvider</span>()
-{
-    <span class="text-pink-400">if</span> (m_aesProvider == <span class="text-pink-400">null</span>)
-    {
-        m_aesProvider = <span class="text-pink-400">new</span> AesCryptoServiceProvider();
-        m_aesProvider.set_Mode(CipherMode.CBC);
-        m_aesProvider.set_IV(mIV); <span class="text-zinc-500">// Sets the static IV, which is 16 zero bytes</span>
-    }
-    <span class="text-pink-400">return</span> m_aesProvider;
-}</code></pre>
-            </div>
-          </div>
 
           <h3 class="prose-h3" id="part1-3">1.3. Script Python</h3>
           <p class="prose-p">
-            Kịch bản này triển khai logic giải mã[cite: 1]. Một số tệp có header magic 3 byte <code class="prose-inline-code">22 4A 67</code> trước dữ liệu được mã hóa[cite: 1].
+            Bạn có thể tham khảo tệp thực thi phân tích tại Repository của mình: <br/>
+            <a href="https://github.com/KhanhTrinh37/ifix-aov/blob/main/parse.py" target="_blank" class="prose-a">https://github.com/KhanhTrinh37/ifix-aov/blob/main/parse.py</a>
           </p>
+          <p class="prose-p">Kịch bản cơ bản để giải mã AES CBC:</p>
           
           <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
             <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
@@ -369,7 +323,7 @@
                 <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               </button>
             </div>
-            <div class="p-4 overflow-x-auto max-h-[500px]">
+            <div class="p-4 overflow-x-auto max-h-[400px]">
 <pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-pink-400">from</span> Crypto.Cipher <span class="text-pink-400">import</span> AES
 <span class="text-pink-400">from</span> Crypto.Util.Padding <span class="text-pink-400">import</span> pad, unpad
 <span class="text-pink-400">import</span> os
@@ -394,398 +348,79 @@ MAGIC = <span class="text-blue-400">bytes</span>.fromhex(<span class="text-green
 
 <span class="text-pink-400">def</span> <span class="text-yellow-200">decrypt</span>(name: <span class="text-blue-400">str</span>) -&gt; <span class="text-blue-400">bytes</span>:
     key = _key(name)
-    <span class="text-pink-400">if not</span> os.path.exists(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.bytes"</span>):
-        <span class="text-blue-400">print</span>(<span class="text-green-300">f"File </span>{name}<span class="text-green-300">.bytes not found!"</span>)
-        <span class="text-pink-400">return</span> <span class="text-green-300">b""</span>
-
-    <span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.bytes"</span>, <span class="text-green-300">"rb"</span>) <span class="text-pink-400">as</span> f:
-        data = f.read()
-
-    off = <span class="text-orange-300">3</span> <span class="text-pink-400">if</span> data[:<span class="text-orange-300">3</span>] == MAGIC <span class="text-pink-400">else</span> <span class="text-orange-300">0</span>
-    ct = data[<span class="text-orange-300">8</span>:]
-    cipher = AES.new(key, AES.MODE_CBC, <span class="text-green-300">b"\x00"</span> * <span class="text-orange-300">16</span>)
-
-    <span class="text-pink-400">try</span>:
-        decrypted_data = cipher.decrypt(ct)
-        pt = unpad(decrypted_data, AES.block_size)
-    <span class="text-pink-400">except</span> (ValueError, KeyError):
-        <span class="text-pink-400">raise</span> ValueError(<span class="text-green-300">"Invalid padding or wrong key/iv"</span>)
-
-    <span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.dec"</span>, <span class="text-green-300">"wb"</span>) <span class="text-pink-400">as</span> f:
-        f.write(pt)
-    <span class="text-pink-400">return</span> pt
-
-<span class="text-pink-400">def</span> <span class="text-yellow-200">encrypt</span>(name: <span class="text-blue-400">str</span>) -&gt; <span class="text-blue-400">bytes</span>:
-    key = _key(name)
-    <span class="text-pink-400">if not</span> os.path.exists(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.dec"</span>):
-        <span class="text-blue-400">print</span>(<span class="text-green-300">f"File </span>{name}<span class="text-green-300">.dec not found!"</span>)
-        <span class="text-pink-400">return</span> <span class="text-green-300">b""</span>
-
-    <span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.dec"</span>, <span class="text-green-300">"rb"</span>) <span class="text-pink-400">as</span> f:
-        pt = f.read()
-
-    original_len = <span class="text-blue-400">len</span>(pt)
-    pt_padded = pad(pt, AES.block_size)
-    cipher = AES.new(key, AES.MODE_CBC, <span class="text-green-300">b"\x00"</span> * <span class="text-orange-300">16</span>)
-    ct = cipher.encrypt(pt_padded)
-
-    hdr = (<span class="text-orange-300">0</span>).to_bytes(<span class="text-orange-300">4</span>, <span class="text-green-300">"little"</span>) + original_len.to_bytes(<span class="text-orange-300">4</span>, <span class="text-green-300">"little"</span>)
-
-    <span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.bytes"</span>, <span class="text-green-300">"wb"</span>) <span class="text-pink-400">as</span> f:
-        f.write(hdr + ct)
-
-    <span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">f"</span>{name}<span class="text-green-300">.bytes"</span>, <span class="text-green-300">"r+b"</span>) <span class="text-pink-400">as</span> f:
-        f.seek(<span class="text-orange-300">0</span>)
-        f.write(MAGIC)
-
-    <span class="text-pink-400">return</span> ct
+    <span class="text-zinc-500"># Mở file, kiểm tra Magic, giải mã AES.MODE_CBC với padding</span>
+    <span class="text-zinc-500"># (Xem chi tiết tại link GitHub phía trên)</span>
+    <span class="text-pink-400">pass</span>
 </code></pre>
             </div>
           </div>
 
-          <h2 class="prose-h2" id="part2">Phần 2: Định dạng tệp sau khi giải mã</h2>
+          <h2 class="prose-h2" id="part2">Phần 2 & 3: Cấu trúc tệp và Máy ảo VM</h2>
           <p class="prose-p">
-            Sau khi giải mã, tệp <code class="prose-inline-code">.dec</code> kết quả được phân tích cú pháp bởi hàm <code class="prose-inline-code">IFix.Core.PatchManager$$Load</code>[cite: 1].
+            Tệp <code class="prose-inline-code">.dec</code> sau giải mã chứa Magic Number, Tên Bridge, Các kiểu bên ngoài, Bytecode Phương thức, v.v. Máy ảo (Virtual Machine) của iFix duyệt qua từng Opcode (ví dụ <code class="prose-inline-code">StackSpace</code>, <code class="prose-inline-code">Ldarg</code>, <code class="prose-inline-code">Add</code>) để thực thi logic vá lỗi trên một ngăn xếp ảo. Toàn bộ logic này kế thừa từ thiết kế mã nguồn mở InjectFix.
           </p>
 
-          <h3 class="prose-h3" id="part2-1">2.1. Trình tải tệp Patch</h3>
-          <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">IFix.Core.PatchManager$$Load</code>[cite: 1]</li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x3256270</code>[cite: 1]</li>
-            <li><strong>Mục đích</strong>: Hàm này đọc dữ liệu nhị phân từ luồng đã giải mã, phân tích nó thành một định dạng có cấu trúc, và chuẩn bị để thực thi bởi máy ảo iFix[cite: 1].</li>
-          </ul>
-
-          <h3 class="prose-h3" id="part2-2">2.2. File Header & Magic Number</h3>
-          <p class="prose-p">Tệp bắt đầu bằng một magic number 8-byte để xác định nó là một bản vá iFix hợp lệ[cite: 1].</p>
-          <ul class="prose-ul">
-            <li><strong>Expected Magic Number</strong>: <code class="prose-inline-code">0x1FD45F460E2CDBD0</code>[cite: 1]</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (IDA Pseudo-code từ IFix.Core.PatchManager$$Load)</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-zinc-500">// v7 is a System_IO_BinaryReader_o*</span>
-<span class="text-zinc-500">// Reads a ulong (8 bytes)</span>
-v10 = v7-&gt;ReadUInt64();
-
-<span class="text-pink-400">if</span> (v10 != <span class="text-orange-300">0x1FD45F460E2CDBD0L</span> L) <span class="text-zinc-500">// Compares with the Magic Number</span>
-{
-    <span class="text-zinc-500">// ... throw exception</span>
-}</code></pre>
-            </div>
-          </div>
-
-          <h3 class="prose-h3" id="part2-3">2.3. Cấu trúc tổng thể của tệp & Kiểu dữ liệu</h3>
-          <p class="prose-p">Tệp được phân tích cú pháp tuần tự, bao gồm các phần sau[cite: 1]:</p>
-          <ol class="prose-ul list-decimal">
-            <li><strong>Magic Number</strong>[cite: 1]</li>
-            <li><strong>Bridge Name</strong>[cite: 1]</li>
-            <li><strong>Extern Types</strong>: Một danh sách các định nghĩa kiểu bên ngoài[cite: 1].</li>
-            <li><strong>Methods</strong>: Mã bytecode lõi và siêu dữ liệu cho các phương thức được vá[cite: 1].</li>
-            <li><strong>Extern Methods</strong>: Danh sách các chữ ký phương thức bên ngoài[cite: 1].</li>
-            <li><strong>Intern Strings</strong>: Một pool chứa các chuỗi[cite: 1].</li>
-            <li>...và các phần metadata khác[cite: 1].</li>
-          </ol>
-
-          <h3 class="prose-h3" id="part2-4">2.4. Các cấu trúc dữ liệu chính</h3>
-          <h4 class="prose-h4">Cấu trúc <code class="prose-inline-code">Instruction</code></h4>
-          <p class="prose-p">Cấu trúc 8-byte này đại diện cho một thao tác duy nhất trong iFix bytecode[cite: 1].</p>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C#</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">public struct</span> <span class="text-yellow-200">Instruction</span>
-{
-    <span class="text-blue-400">public</span> Code Code; <span class="text-zinc-500">// 4-byte opcode enum</span>
-    <span class="text-blue-400">public int</span> Operand; <span class="text-zinc-500">// 4-byte operand</span>
-}</code></pre>
-            </div>
-          </div>
-
-          <h2 class="prose-h2" id="part3">Phần 3: Cấu trúc bên trong Máy ảo (Virtual Machine)</h2>
+          <h2 class="prose-h2" id="part4">Phần 4: Tạo Hotfix Bytecode (Lý thuyết)</h2>
           <p class="prose-p">
-            Bytecode của iFix được diễn dịch bởi một Máy ảo tùy chỉnh[cite: 1]. Công cụ thực thi này được dẫn xuất từ kiến trúc của <a href="https://github.com/Tencent/InjectFix" class="prose-a">InjectFix của Tencent</a>, được thiết kế để phân tích động và chạy các lệnh IL tại runtime mà không cần cập nhật toàn bộ ứng dụng[cite: 1].
-          </p>
-
-          <h3 class="prose-h3" id="part3-1">3.1. Vòng lặp thực thi của VM</h3>
-          <p class="prose-p">Vòng lặp thực thi chính nằm trong phương thức <code class="prose-inline-code">IFix.Core.VirtualMachine.Execute</code>[cite: 1].</p>
-          <ul class="prose-ul">
-            <li><strong>Function</strong>: <code class="prose-inline-code">IFix.Core.VirtualMachine.Execute</code>[cite: 1]</li>
-            <li><strong>Address</strong>: <code class="prose-inline-code">0x3245FF8</code>[cite: 1]</li>
-            <li><strong>Vai trò</strong>: Nó lặp qua một mảng các cấu trúc <code class="prose-inline-code">Instruction</code>, giải mã từng opcode, và thực thi logic tương ứng trên một ngăn xếp đánh giá (evaluation stack) ảo[cite: 1].</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (Ý tưởng Vòng lặp thực thi)</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">Value*</span> <span class="text-yellow-200">Execute</span>(<span class="text-blue-400">Instruction*</span> pc, ...)
-{
-    <span class="text-blue-400">Instruction*</span> current_pc = pc;
-    <span class="text-pink-400">while</span> (<span class="text-orange-300">true</span>)
-    {
-        <span class="text-blue-400">Instruction</span> instruction = *current_pc;
-        <span class="text-pink-400">switch</span> (instruction.Code)
-        {
-            <span class="text-zinc-500">// cases for each opcode...</span>
-        }
-    }
-}</code></pre>
-            </div>
-          </div>
-
-          <h3 class="prose-h3" id="part3-2">3.2. Ví dụ về xử lý Opcode</h3>
-          <h4 class="prose-h4"><code class="prose-inline-code">StackSpace</code></h4>
-          <p class="prose-p">Lệnh này được xử lý một lần ở đầu hàm <code class="prose-inline-code">Execute</code> để thiết lập khung ngăn xếp[cite: 1].</p>
-          <ul class="prose-ul">
-            <li><strong>Mục đích</strong>: Định nghĩa độ sâu ngăn xếp tối đa và số lượng biến cục bộ cho một phương thức[cite: 1].</li>
-            <li><strong>Toán hạng</strong>: Chứa <code class="prose-inline-code">max_stack</code> (16 bit thấp) và <code class="prose-inline-code">locals_cnt</code> (16 bit cao)[cite: 1].</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-zinc-500">// ... at the very beginning of the Execute function</span>
-<span class="text-pink-400">if</span> (pc-&gt;fields.Code != <span class="text-orange-300">146</span>) <span class="text-zinc-500">// pc is the first instruction</span>
-{
-    <span class="text-zinc-500">// ... throw InvalidProgramException</span>
-}
-virtualMachine = v15;
-Operand = pc-&gt;fields.Operand; <span class="text-zinc-500">// pc-&gt;fields.Operand is the operand of StackSpace</span>
-
-v18 = argumentBase - evaluationStackBase;
-<span class="text-pink-400">if</span> ((<span class="text-blue-400">int</span>)(v18 + argsCount + (Operand &gt;&gt; <span class="text-orange-300">16</span>) + (<span class="text-blue-400">unsigned __int16</span>)Operand) &gt;= <span class="text-orange-300">10241</span>) <span class="text-zinc-500">// Check for stack overflow</span>
-{
-    <span class="text-zinc-500">// ... throw StackOverflowException</span>
-}
-<span class="text-zinc-500">// ... further initialization using Operand's values</span></code></pre>
-            </div>
-          </div>
-          <p class="prose-p"><strong>Giải thích:</strong> Trước khi bất kỳ lệnh nào khác được thực thi, hàm <code class="prose-inline-code">Execute</code> xác thực rằng lệnh đầu tiên là <code class="prose-inline-code">StackSpace</code>[cite: 1]. Sau đó, nó trích xuất kích thước ngăn xếp tối đa và số lượng biến cục bộ từ toán hạng của nó[cite: 1]. Thông tin này rất quan trọng để thiết lập khung ngăn xếp của phương thức và thực hiện các kiểm tra tràn ngăn xếp ban đầu[cite: 1].</p>
-
-          <h4 class="prose-h4"><code class="prose-inline-code">Ldarg</code>: Tải Đối số</h4>
-          <p class="prose-p">Đẩy một đối số của phương thức lên evaluation stack[cite: 1].</p>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-zinc-500">// Ldarg instruction</span>
-<span class="text-yellow-200">IFix_Core_VirtualMachine__copy</span>(
-    virtualMachine,
-    evaluationStackBasea,
-    v19++, <span class="text-zinc-500">// Destination on stack</span>
-    &amp;v1187[v20-&gt;fields.Operand], <span class="text-zinc-500">// Source argument</span>
-    managedStack,
-    ...);
-++v20;
-<span class="text-pink-400">continue</span>;</code></pre>
-            </div>
-          </div>
-          
-          <h3 class="prose-h3" id="part3-3">3.3. Script Python</h3>
-          <p class="prose-p">
-            Bạn có thể tìm thấy tại <a href="https://github.com/tien0246/iFix-parse" class="prose-a">iFix-parse</a>[cite: 1]. Vui lòng thả sao (star) nếu bạn thấy nó hữu ích[cite: 1].
-          </p>
-
-          <h2 class="prose-h2" id="part4">Phần 4: Tạo Hotfix Bytecode</h2>
-          <p class="prose-p">
-            Với việc hiểu rõ định dạng tệp và logic của VM, bây giờ tôi có thể xây dựng một hotfix tùy chỉnh[cite: 1]. Mục tiêu của tôi là sửa đổi <code class="prose-inline-code">CameraSystem.GetZoomRate</code> để trả về <strong>gấp 3 lần</strong> giá trị ban đầu[cite: 1].
-          </p>
-
-          <h3 class="prose-h3" id="part4-1">4.1. Chiến lược Patch (Vá lỗi)</h3>
-          <p class="prose-p">Tôi cần tạo một tệp nhị phân (<code class="prose-inline-code">.dec</code>) chứa[cite: 1]:</p>
-          <ol class="prose-ul list-decimal">
-            <li><strong>Extern Types</strong>: <code class="prose-inline-code">CameraSystem</code> và <code class="prose-inline-code">System.Single</code>[cite: 1].</li>
-            <li><strong>Method Body</strong>: Một chuỗi các lệnh để triển khai <code class="prose-inline-code">return this.get_ZoomRateFromAge() * 3.0f;</code>[cite: 1].</li>
-            <li><strong>Fix Info</strong>: Ánh xạ phương thức mới của tôi với <code class="prose-inline-code">GetZoomRate</code>[cite: 1].</li>
-          </ol>
-
-          <h3 class="prose-h3" id="part4-2">4.2. Logic của Opcode</h3>
-          <p class="prose-p">Chuỗi assembly sau[cite: 1]:</p>
-          <ul class="prose-ul">
-            <li><code class="prose-inline-code">StackSpace (146, 2)</code>: Khởi tạo kích thước ngăn xếp bằng 2[cite: 1].</li>
-            <li><code class="prose-inline-code">Ldarg.0 (164, 0)</code>: Tải <code class="prose-inline-code">this</code>[cite: 1].</li>
-            <li><code class="prose-inline-code">CallVirt (122, token)</code>: Gọi <code class="prose-inline-code">get_ZoomRateFromAge</code>[cite: 1].</li>
-            <li><code class="prose-inline-code">Ldc_I4 (143, 3)</code>: Đẩy số nguyên <code class="prose-inline-code">3</code> vào[cite: 1].</li>
-            <li><code class="prose-inline-code">Conv.R4 (58, 0)</code>: Chuyển đổi <code class="prose-inline-code">3</code> sang float[cite: 1].</li>
-            <li><code class="prose-inline-code">Mul (3, 0)</code>: Nhân kết quả[cite: 1].</li>
-            <li><code class="prose-inline-code">Ret (173, 1)</code>: Return (Trở về)[cite: 1].</li>
-          </ul>
-
-          <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Python (Patch Generator)</span>
-              <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
-                <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </button>
-            </div>
-            <div class="p-4 overflow-x-auto max-h-[500px]">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-pink-400">import</span> struct
-
-<span class="text-pink-400">def</span> <span class="text-yellow-200">w_str</span>(f, s):
-    data = s.encode(<span class="text-green-300">'utf-8'</span>)
-    l = <span class="text-blue-400">len</span>(data)
-    <span class="text-pink-400">while</span> l &gt;= <span class="text-orange-300">0x80</span>:
-        f.write(struct.pack(<span class="text-green-300">'B'</span>, (l &amp; <span class="text-orange-300">0x7F</span>) | <span class="text-orange-300">0x80</span>))
-        l &gt;&gt;= <span class="text-orange-300">7</span>
-    f.write(struct.pack(<span class="text-green-300">'B'</span>, l))
-    f.write(data)
-
-<span class="text-pink-400">with</span> <span class="text-blue-400">open</span>(<span class="text-green-300">"HeroSkin_1.dec"</span>, <span class="text-green-300">'wb'</span>) <span class="text-pink-400">as</span> f:
-    <span class="text-zinc-500"># 1. Header Magic</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;Q'</span>, <span class="text-orange-300">0x1FD45F460E2CDBD0</span>))
-
-    <span class="text-zinc-500"># 2. Bridge Name</span>
-    w_str(f, <span class="text-green-300">"IFix.ILFixInterfaceBridge, Project_d, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span>)
-
-    <span class="text-zinc-500"># 3. Extern Types</span>
-    types = [
-        <span class="text-green-300">"CameraSystem, Project_d, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"</span>,
-        <span class="text-green-300">"System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"</span>
-    ]
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-blue-400">len</span>(types)))
-    <span class="text-pink-400">for</span> t <span class="text-pink-400">in</span> types:
-        w_str(f, t)
-
-    <span class="text-zinc-500"># 4. Methods (Payload)</span>
-    <span class="text-zinc-500"># Logic: return 3 * get_ZoomRateFromAge()</span>
-    ops = [
-        (<span class="text-orange-300">146</span>, <span class="text-orange-300">2</span>),    <span class="text-zinc-500"># StackSpace (locals=0, maxstack=2)</span>
-        (<span class="text-orange-300">164</span>, <span class="text-orange-300">0</span>),    <span class="text-zinc-500"># ldarg.0</span>
-        (<span class="text-orange-300">122</span>, <span class="text-orange-300">65536</span>),<span class="text-zinc-500"># callvirt CameraSystem::get_ZoomRateFromAge</span>
-        (<span class="text-orange-300">143</span>, <span class="text-orange-300">3</span>),    <span class="text-zinc-500"># ldc.i4 3</span>
-        (<span class="text-orange-300">58</span>, <span class="text-orange-300">0</span>),     <span class="text-zinc-500"># conv.r4</span>
-        (<span class="text-orange-300">3</span>, <span class="text-orange-300">0</span>),      <span class="text-zinc-500"># mul</span>
-        (<span class="text-orange-300">173</span>, <span class="text-orange-300">1</span>)     <span class="text-zinc-500"># ret</span>
-    ]
-
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">1</span>)) <span class="text-zinc-500"># Num methods</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-blue-400">len</span>(ops)))
-    <span class="text-pink-400">for</span> code, op <span class="text-pink-400">in</span> ops:
-        f.write(struct.pack(<span class="text-green-300">'&lt;ii'</span>, code, op))
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">0</span>)) <span class="text-zinc-500"># No exception handlers</span>
-
-    <span class="text-zinc-500"># 5. Extern Methods References</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">1</span>)) <span class="text-zinc-500"># Count</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;?i'</span>, <span class="text-orange-300">False</span>, <span class="text-orange-300">0</span>)) <span class="text-zinc-500"># is_generic=False, type_id=0 (CameraSystem)</span>
-    w_str(f, <span class="text-green-300">"get_ZoomRateFromAge"</span>)
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">0</span>)) <span class="text-zinc-500"># param_ids count</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;4i'</span>, <span class="text-orange-300">0</span>, <span class="text-orange-300">0</span>, <span class="text-orange-300">0</span>, <span class="text-orange-300">0</span>))
-
-    <span class="text-zinc-500"># 6. Managers info</span>
-    w_str(f, <span class="text-green-300">"IFix.WrappersManagerImpl, Project_d, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span>)
-    w_str(f, <span class="text-green-300">", Project_d, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"</span>)
-
-    <span class="text-zinc-500"># 7. Fix Infos (Mapping)</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">1</span>)) <span class="text-zinc-500"># Count</span>
-    <span class="text-zinc-500"># Target: CameraSystem.GetZoomRate -&gt; Patch ID 0</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;?i'</span>, <span class="text-orange-300">False</span>, <span class="text-orange-300">0</span>))
-    w_str(f, <span class="text-green-300">"GetZoomRate"</span>)
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">0</span>)) <span class="text-zinc-500"># param_ids count</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">0</span>)) <span class="text-zinc-500"># patch_id</span>
-
-    <span class="text-zinc-500"># 8. New Classes</span>
-    f.write(struct.pack(<span class="text-green-300">'&lt;i'</span>, <span class="text-orange-300">0</span>))
-
-    <span class="text-blue-400">print</span>(<span class="text-green-300">"Done"</span>)</code></pre>
-            </div>
-          </div>
-
-          <h3 class="prose-h3" id="part4-4">4.4. Hoàn thiện Hotfix</h3>
-          <p class="prose-p">
-            Sau khi chạy kịch bản trình tạo, tôi thu được <code class="prose-inline-code">HeroSkin_1.dec</code>[cite: 1]. Sau đó, sử dụng mã mã hóa từ Phần 1.3 để tạo ra <code class="prose-inline-code">HeroSkin_1.bytes</code> và sao chép nó vào thư mục tài nguyên của trò chơi[cite: 1].
+            Bằng cách viết script Python đóng gói các lệnh Opcode (CallVirt, Mul, Ret), ta có thể biên dịch ra file <code class="prose-inline-code">.dec</code> chứa bytecode vá lỗi (ví dụ nhân 3 một chỉ số trong game), sau đó mã hóa lại thành <code class="prose-inline-code">.bytes</code> để tải. Tuy nhiên, quy trình này rất phức tạp. Ở phần tiếp theo, chúng ta sẽ xem cách InjectFix tự động hóa quy trình này.
           </p>
 
           <!-- NEW SECTION: Tencent InjectFix Guide -->
           <div class="mt-16 pt-8 border-t border-border/50">
-            <h2 class="prose-h2" id="part5">Phần 5: Sử dụng InjectFix trong thực tế (Tencent InjectFix)</h2>
+            <h2 class="prose-h2" id="part5">Phần 5: Sử dụng InjectFix trong thực tế</h2>
             <p class="prose-p">
-              Sau khi đã tìm hiểu cách iFix hoạt động bên dưới thông qua việc dịch ngược, chúng ta sẽ xem xét cách áp dụng thực tế thư viện <a href="https://github.com/Tencent/InjectFix" target="_blank" class="prose-a">Tencent/InjectFix</a> vào các dự án Unity cá nhân để tự động tạo ra mã Hotfix.
+              Thay vì phải biên dịch thủ công bytecode như phần 4, framework <a href="https://github.com/Tencent/InjectFix" target="_blank" class="prose-a">Tencent/InjectFix</a> cung cấp công cụ tự động hóa quá trình này cho Unity.
             </p>
 
-            <h3 class="prose-h3" id="part5-1">5.1. Giới thiệu về InjectFix</h3>
+            <h3 class="prose-h3" id="part5-1">5.1. Cơ chế hoạt động của InjectFix</h3>
             <p class="prose-p">
-              InjectFix là một giải pháp hotfix (cập nhật nóng) mã nguồn mở dành riêng cho Unity C# do Tencent phát triển. Nó cho phép sửa lỗi logic ngay lập tức mà không cần cập nhật toàn bộ file APK/IPA, bằng cách chèn (inject) các mã nhảy (jump code) vào các phương thức lỗi và chuyển hướng thực thi sang một máy ảo (Virtual Machine) chứa mã IL đã được vá.
+              InjectFix hoạt động bằng cách can thiệp vào giai đoạn biên dịch IL của Unity (sử dụng Mono.Cecil). Nó thay đổi các hàm gốc, chèn một đoạn mã kiểm tra (if-check). Tại runtime, nếu có bản vá (Patch) được tải, luồng thực thi sẽ nhảy vào Virtual Machine (VM) của InjectFix để chạy mã IL mới thay vì mã cũ.
             </p>
 
             <h3 class="prose-h3" id="part5-2">5.2. Các Attribute cốt lõi</h3>
-            <p class="prose-p">Để sử dụng InjectFix, bạn cần làm quen với các Attribute sau để đánh dấu mã cần tương tác:</p>
             <ul class="prose-ul">
-              <li><strong><code class="prose-inline-code">[IFix.Patch]</code></strong>: Đánh dấu hàm bạn muốn sửa lỗi. Mã IL mới của hàm này sẽ được biên dịch và đóng gói vào file patch.</li>
-              <li><strong><code class="prose-inline-code">[IFix.Interpret]</code></strong>: Sử dụng khi bạn muốn thêm một lớp (class) hoàn toàn mới hoặc một phương thức mới trong bản vá mà phiên bản gốc chưa hề có.</li>
-              <li><strong><code class="prose-inline-code">[IFix.CustomBridge]</code></strong>: Cầu nối (Bridge) bắt buộc khi máy ảo iFix cần gọi ngược (callback) ra ngoài môi trường C# gốc (ví dụ: gán một hàm ẩn danh/delegate vào một event của Unity).</li>
+              <li><strong><code class="prose-inline-code">[IFix.Patch]</code></strong>: Gắn lên hàm cần sửa đổi. Script của InjectFix sẽ dịch hàm này sang mã IL và đóng gói vào file patch.</li>
+              <li><strong><code class="prose-inline-code">[IFix.Interpret]</code></strong>: Thêm hàm mới hoặc Class hoàn toàn mới vào bản vá (không tồn tại trong file gốc).</li>
+              <li><strong><code class="prose-inline-code">[IFix.CustomBridge]</code></strong>: Cầu nối cần thiết khi mã trong VM cần giao tiếp với Delegate/Event của C# gốc bên ngoài.</li>
             </ul>
 
-            <h3 class="prose-h3" id="part5-3">5.3. Quy trình tạo và tải bản vá (Workflow)</h3>
+            <h3 class="prose-h3" id="part5-3">5.3. Demo quy trình vá lỗi (Hotfixing)</h3>
             
-            <h4 class="prose-h4">Bước 1: Viết mã cần vá</h4>
-            <p class="prose-p">Giả sử bạn có một logic tính toán sát thương bị sai, bạn chỉ cần sửa mã và thêm tag <code class="prose-inline-code">[IFix.Patch]</code> ngay trên hàm đó:</p>
+            <p class="prose-p">Giả sử chúng ta có một lớp quản lý máu của nhân vật, và hàm tính toán đang bị lỗi:</p>
 
             <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
               <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-                <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (Ví dụ mã vá)</span>
+                <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (Sửa lỗi logic)</span>
                 <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
                   <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                   <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                 </button>
               </div>
               <div class="p-4 overflow-x-auto">
-<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-zinc-500">// File gốc bị lỗi</span>
-<span class="text-blue-400">public class</span> <span class="text-yellow-200">PlayerLogic</span> 
+<pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">public class</span> <span class="text-yellow-200">HealthSystem</span> 
 {
+    <span class="text-zinc-500">// Đánh dấu hàm cần vá bằng Attribute của IFix</span>
     <span class="text-yellow-200">[IFix.Patch]</span>
-    <span class="text-blue-400">public int</span> <span class="text-yellow-200">CalculateDamage</span>(<span class="text-blue-400">int</span> baseDmg) 
+    <span class="text-blue-400">public void</span> <span class="text-yellow-200">TakeDamage</span>(<span class="text-blue-400">int</span> damage) 
     {
-        <span class="text-zinc-500">// Sửa logic ở đây: Nhân 3 thay vì nhân 1</span>
-        <span class="text-pink-400">return</span> baseDmg * <span class="text-orange-300">3</span>; 
+        <span class="text-zinc-500">// Lỗi gốc: health += damage; (cộng nhầm máu thay vì trừ)</span>
+        <span class="text-zinc-500">// Mã sau khi sửa:</span>
+        <span class="text-blue-400">this</span>.health -= damage; 
+        
+        <span class="text-pink-400">if</span> (<span class="text-blue-400">this</span>.health &lt; <span class="text-orange-300">0</span>) 
+            Die();
     }
 }</code></pre>
               </div>
             </div>
 
-            <h4 class="prose-h4">Bước 2: Sinh mã (Generate) và Xây dựng bản vá (Build Patch)</h4>
             <p class="prose-p">
-              Sau khi code xong, trên thanh Menu của Unity (đã tích hợp InjectFix), bạn nhấp vào <strong>InjectFix -> Inject</strong> (để chuẩn bị mã gốc) và <strong>InjectFix -> Fix All</strong>. Công cụ này sẽ quét các Attribute và tự động tạo ra một file bytecode (ví dụ: <code class="prose-inline-code">Assembly-CSharp.patch.bytes</code>). File này chính là kết quả tương đương với file <code class="prose-inline-code">.dec</code> mà chúng ta đã phân tích thủ công ở Phần 4.
-            </p>
-
-            <h4 class="prose-h4">Bước 3: Tải bản vá tại Runtime</h4>
-            <p class="prose-p">
-              Bước cuối cùng là tải tệp patch này ngay khi trò chơi khởi động thông qua <code class="prose-inline-code">PatchManager</code>. 
+              Sau khi sửa mã, bạn chọn Menu <strong>InjectFix -> Fix All</strong> trong Editor. InjectFix sẽ phân tích hàm <code class="prose-inline-code">TakeDamage</code> mới, chuyển nó thành file <code class="prose-inline-code">patch.bytes</code>. Bạn đẩy file này lên Server. Dưới Client Unity, bạn tải file về và gọi lệnh nạp:
             </p>
 
             <div class="rounded-md border border-border bg-zinc-950 overflow-hidden my-6 shadow-sm">
               <div class="flex items-center justify-between border-b border-white/10 bg-zinc-900/50 px-4 py-2">
-                <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (Init Patch)</span>
+                <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">C# (Nạp bản vá tại Runtime)</span>
                 <button onclick="copyCode(this)" class="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:bg-white/10 hover:text-foreground transition-colors" title="Copy code">
                   <svg class="icon-copy w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                   <svg class="icon-check w-3.5 h-3.5 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -795,26 +430,28 @@ v18 = argumentBase - evaluationStackBase;
 <pre class="text-sm text-zinc-50 font-mono leading-relaxed"><code><span class="text-blue-400">using</span> IFix.Core;
 <span class="text-blue-400">using</span> System.IO;
 
-<span class="text-blue-400">public class</span> <span class="text-yellow-200">GameInit</span> : MonoBehaviour 
+<span class="text-blue-400">public class</span> <span class="text-yellow-200">HotfixManager</span> : MonoBehaviour 
 {
     <span class="text-blue-400">void</span> <span class="text-yellow-200">Start</span>() 
     {
-        <span class="text-zinc-500">// Giả định bạn đã tải file bytes từ server về đường dẫn này</span>
-        <span class="text-blue-400">string</span> patchPath = Path.Combine(Application.persistentDataPath, <span class="text-green-300">"hotfix.bytes"</span>);
+        <span class="text-blue-400">string</span> patchPath = Path.Combine(Application.persistentDataPath, <span class="text-green-300">"patch.bytes"</span>);
         
         <span class="text-pink-400">if</span> (File.Exists(patchPath))
         {
             <span class="text-blue-400">using</span> (FileStream fs = <span class="text-pink-400">new</span> FileStream(patchPath, FileMode.Open))
             {
-                <span class="text-zinc-500">// Tải và thực thi bản vá vào máy ảo VM</span>
+                <span class="text-zinc-500">// Nạp bytecode vá lỗi vào Máy ảo (Virtual Machine)</span>
                 PatchManager.Load(fs);
-                Debug.Log(<span class="text-green-300">"Hotfix loaded successfully!"</span>);
             }
         }
     }
 }</code></pre>
               </div>
             </div>
+
+            <p class="prose-p">
+              Với phương thức này, các nhà phát triển game có thể khắc phục các lỗi nghiêm trọng (Critical Bugs) hoặc cập nhật logic sự kiện ngay lập tức mà không cần người dùng phải tải lại toàn bộ bản cập nhật ứng dụng từ App Store/Google Play.
+            </p>
           </div>
           
         </article>
@@ -824,7 +461,7 @@ v18 = argumentBase - evaluationStackBase;
           <div class="sticky top-24 rounded-xl border border-border bg-card p-6 shadow-sm">
             <h4 class="mb-4 font-semibold text-foreground">Mục lục</h4>
             <nav class="space-y-2.5 text-sm text-muted-foreground">
-              <a href="#disclaimer" class="block hover:text-foreground transition-colors">Tuyên bố từ chối trách nhiệm</a>
+              <a href="#disclaimer" class="block hover:text-foreground transition-colors">Tuyên bố Đạo đức</a>
               
               <a href="#part1" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Phần 1: Giải mã</a>
               <div class="pl-4 border-l border-border space-y-2 mt-1">
@@ -833,34 +470,15 @@ v18 = argumentBase - evaluationStackBase;
                 <a href="#part1-3" class="block hover:text-foreground transition-colors">1.3. Script Python</a>
               </div>
 
-              <a href="#part2" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Phần 2: Định dạng tệp sau giải mã</a>
-              <div class="pl-4 border-l border-border space-y-2 mt-1">
-                <a href="#part2-1" class="block hover:text-foreground transition-colors">2.1. Trình tải tệp Patch</a>
-                <a href="#part2-2" class="block hover:text-foreground transition-colors">2.2. Header & Magic Number</a>
-                <a href="#part2-3" class="block hover:text-foreground transition-colors">2.3. Cấu trúc tổng thể</a>
-                <a href="#part2-4" class="block hover:text-foreground transition-colors">2.4. Cấu trúc dữ liệu chính</a>
-              </div>
-
-              <a href="#part3" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Phần 3: Cấu trúc bên trong Máy ảo (VM)</a>
-              <div class="pl-4 border-l border-border space-y-2 mt-1">
-                <a href="#part3-1" class="block hover:text-foreground transition-colors">3.1. Vòng lặp thực thi của VM</a>
-                <a href="#part3-2" class="block hover:text-foreground transition-colors">3.2. Ví dụ xử lý Opcode</a>
-                <a href="#part3-3" class="block hover:text-foreground transition-colors">3.3. Script Python</a>
-              </div>
+              <a href="#part2" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Phần 2 & 3: Cấu trúc & VM</a>
 
               <a href="#part4" class="block hover:text-foreground font-medium transition-colors mt-2 text-foreground">Phần 4: Tạo Hotfix Bytecode</a>
-              <div class="pl-4 border-l border-border space-y-2 mt-1">
-                <a href="#part4-1" class="block hover:text-foreground transition-colors">4.1. Chiến lược Patch</a>
-                <a href="#part4-2" class="block hover:text-foreground transition-colors">4.2. Logic của Opcode</a>
-                <a href="#part4-3" class="block hover:text-foreground transition-colors">4.3. Script Python</a>
-                <a href="#part4-4" class="block hover:text-foreground transition-colors">4.4. Hoàn thiện Hotfix</a>
-              </div>
 
-              <a href="#part5" class="block hover:text-primary font-semibold transition-colors mt-2 text-foreground">Phần 5: Ứng dụng InjectFix (Mới)</a>
+              <a href="#part5" class="block hover:text-primary font-semibold transition-colors mt-4 text-foreground">Phần 5: Ứng dụng InjectFix</a>
               <div class="pl-4 border-l-2 border-primary space-y-2 mt-1">
-                <a href="#part5-1" class="block hover:text-foreground transition-colors">5.1. Giới thiệu</a>
+                <a href="#part5-1" class="block hover:text-foreground transition-colors">5.1. Cơ chế hoạt động</a>
                 <a href="#part5-2" class="block hover:text-foreground transition-colors">5.2. Các Attribute cốt lõi</a>
-                <a href="#part5-3" class="block hover:text-foreground transition-colors">5.3. Quy trình thực tế (Workflow)</a>
+                <a href="#part5-3" class="block hover:text-foreground transition-colors">5.3. Demo quy trình (Workflow)</a>
               </div>
             </nav>
           </div>
@@ -870,16 +488,25 @@ v18 = argumentBase - evaluationStackBase;
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-border/40 py-8 bg-muted/20">
+    <footer class="border-t border-border/40 py-8 bg-muted/20 transition-colors duration-300">
       <div class="container mx-auto px-4 sm:px-8 max-w-7xl flex items-center justify-between">
         <p class="text-sm text-muted-foreground">
-          © 2026 Trịnh Minh Khanh. Xây dựng với Shadcn UI.
+          © 2026 KhanhTrinh37. Giao diện tùy chỉnh chuẩn Shadcn UI.
         </p>
       </div>
     </footer>
 
-    <!-- Script for copy code blocks -->
+    <!-- Scripts -->
     <script>
+      // Toggle Theme Function
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+
+      themeToggleBtn.addEventListener('click', () => {
+        htmlElement.classList.toggle('dark');
+      });
+
+      // Copy Code Function
       function copyCode(button) {
         const wrapper = button.closest('.rounded-md.border');
         const code = wrapper.querySelector('code');
